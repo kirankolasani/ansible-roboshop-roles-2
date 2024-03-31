@@ -22,7 +22,7 @@
 
 - name: Create Nginx Reverse Proxy Configuration.
   copy: 
-    src: roboshop.conf 
+    src: roboshop.conf.j2
     dest: /etc/nginx/default.d/roboshop.conf
 
 - name: Restart Nginx Service to load the changes of the configuration.
