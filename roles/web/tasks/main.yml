@@ -1,0 +1,31 @@
+- name: Install nginx
+  yum: 
+    name: nginx
+    state: installed
+
+- name: Start & Enable Nginx service
+  service: 
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Remove the default content that web server is serving.
+  file:
+    path: /usr/share/nginx/html/*
+    state: absent
+ 
+- name: Download & Extract the frontend content.
+  unarchive:
+    src: https://roboshop-builds.s3.amazonaws.com/web.zip
+    dest: /usr/share/nginx/html/
+    remote_src: yes
+
+- name: Create Nginx Reverse Proxy Configuration.
+  copy: 
+    src: roboshop.conf 
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Restart Nginx Service to load the changes of the configuration.
+  service:
+    name: nginx
+    state: restarted

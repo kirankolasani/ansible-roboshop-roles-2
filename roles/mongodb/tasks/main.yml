@@ -1,4 +1,21 @@
-- name: Configuring mongodb 
-  role:
+- name: setup mongodb repo
+  import_role:
     name: common
-    tasks_from: mongodb-repo
+    tasks_from: setup_mongodb_repo
+
+- name: installing mongodb
+  yum:
+    name: mongodb-org
+    state: installed
+- name: Update listen address from 127.0.0.1 to 0.0.0.0 in /etc/mongod.conf
+  replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+- name: Starting service mongod
+  service:
+    name: mongod
+    state: started
+    enabled: yes
+
+    

@@ -1,0 +1,14 @@
+- name: Copy the {{catacomponentlogue}} service file
+  copy:
+    src: "{{component}}.service"
+    dest: /etc/systemd/system/{{component}}.service
+
+- name: Load the daemon_reload service.
+  systemd:
+    daemon_reload: yes
+
+- name: Enable & Start the service.
+  service:
+    name: "{{component}}""
+    state: started
+    enabled: yes

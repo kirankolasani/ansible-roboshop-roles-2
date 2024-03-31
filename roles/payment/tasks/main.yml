@@ -1,0 +1,23 @@
+- name: Install python 3.6
+  yum:
+    name: "{{item}}"
+    state: installed
+  loop:
+  - python36 
+  - gcc 
+  - python3-devel
+
+- name: Installing {{component}} application
+  import_role:
+    name: common
+    tasks_from: Setup_App
+
+- name: 
+  command: pip3.6 install -r requirements.txt
+  args:
+    chdir: /app
+
+- name: Setup SystemD & Start {{component}} Service.
+  import_role:
+    name: common
+    tasks_from: service_start

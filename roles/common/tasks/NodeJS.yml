@@ -1,0 +1,7 @@
+- name: Setup NodeJS repos
+  shell: 'curl -sL https://rpm.nodesource.com/setup_lts.x | bash'
+
+- name: Installing NodeJS
+  yum:
+    name: nodejs 
+    state: installed

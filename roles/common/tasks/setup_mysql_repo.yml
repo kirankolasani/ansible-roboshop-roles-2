@@ -1,0 +1,4 @@
+- name: Setup the MySQL5.7 repo file
+  copy: 
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo

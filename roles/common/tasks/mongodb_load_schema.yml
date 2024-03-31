@@ -1,0 +1,9 @@
+- name: install mongodb-client
+  yum:
+    name: mongodb-org-shell
+    state: installed
+
+- name:  Load Schema
+  shell: mongo --host mongodb.devopsaws.site < /app/schema/{{component}}.js
+
+  
