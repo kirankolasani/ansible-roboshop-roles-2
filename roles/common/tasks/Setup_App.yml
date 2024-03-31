@@ -8,20 +8,20 @@
     name: "{{USER}}"
   when: output.rc != 0
 
-- name: Check an application directory {{app_dir}} exit or not.
+- name: Check an application directory {{APP_DIR}} exit or not.
   stat:
-    path: "{{app_dir}}"
+    path: "{{APP_DIR}}"
   register: dir
   
 
-- name: Create a dir {{app_dir}} if not exit
+- name: Create a dir {{APP_DIR}} if not exit
   file:
-    name: "{{app_dir}}"
+    name: "{{APP_DIR}}"
     state: directory
   when: dir.stat.exists == False
 
 - name: Download & Unzip the package file
   unarchive:
     src: https://roboshop-builds.s3.amazonaws.com/{{component}}.zip
-    dest: "{{app_dir}}"
+    dest: "{{APP_DIR}}"
     remote_src: yes
