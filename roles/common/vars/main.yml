@@ -1,5 +1,5 @@
 USER: roboshop
-RMQ_USER: rabbitmq-server
+RMQ_USER: rabbitmq-server2
 APP_DIR: "/app"
 CATALOGUE_HOST: catalogue.devopsaws.site
 CART_HOST: cart.devopsaws.site
