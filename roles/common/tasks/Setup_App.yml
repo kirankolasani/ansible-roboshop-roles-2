@@ -1,27 +1,27 @@
-- name: check application User roboshop existed or not
+- name: check application User {{USER}} existed or not
   command: id {{USER}}
   register: output
   ignore_errors: true
 
-- name: Create a user roboshop if not exit
+- name: Create a user {{USER}} if not exit
   user: 
     name: "{{USER}}"
   when: output.rc != 0
 
-- name: Check an app directory exit or not.
+- name: Check an application directory {{app_dir}} exit or not.
   stat:
-    path: /app
+    path: "{{app_dir}}"
   register: dir
   
 
-- name: Create a dir /app if not exit
+- name: Create a dir {{app_dir}} if not exit
   file:
-    name: /app
+    name: "{{app_dir}}"
     state: directory
   when: dir.stat.exists == False
 
 - name: Download & Unzip the package file
   unarchive:
     src: https://roboshop-builds.s3.amazonaws.com/{{component}}.zip
-    dest: /app
+    dest: "{{app_dir}}"
     remote_src: yes

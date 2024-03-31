@@ -1,4 +1,4 @@
-- name: Restart the service.
+- name: Restart the {{component}} service.
   service:
     name: "{{component}}"
     state: restarted
