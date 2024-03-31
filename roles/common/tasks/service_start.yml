@@ -9,6 +9,6 @@
 
 - name: Enable & Start the service.
   service:
-    name: "{{component}}""
+    name: "{{component}}"
     state: started
     enabled: yes
