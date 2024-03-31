@@ -31,7 +31,7 @@
     state: installed
 
 - name: Load schema
-  shell: mysql -h mysql.devopsaws.site -uroot -pRoboShop@1 < /app/schema/{{component}}.sql 
+  shell: mysql -h {{MYSQL_HOST}} -uroot -pRoboShop@1 < /app/schema/{{component}}.sql 
 
 - name: Restart the {{component}} service.
   import_role:
