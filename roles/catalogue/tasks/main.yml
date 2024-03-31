@@ -1,0 +1,39 @@
+- name: Installing NodeJS
+  import_role:
+    name: common
+    tasks_from: NodeJS  
+
+- name: Installing {{component}} application
+  import_role:
+    name: common
+    tasks_from: Setup_App
+
+- name: Install  the NPM dependencies
+  command: npm install 
+  args:
+    chdir: /app
+
+- name: startup {{component}} service
+  import_role:
+    name: common
+    tasks_from: service_start
+
+- name: setup mongodb repo
+  import_role:
+    name: common
+    tasks_from: setup_mongodb_repo
+
+- name: Load schema of {{component}} application.
+  import_role:
+    name: common
+    tasks_from: mongodb_load_schema
+
+- name: Restart {{component}} service.
+  import_role:
+    name: common
+    tasks_from: restart_service
+
+    
+
+
+

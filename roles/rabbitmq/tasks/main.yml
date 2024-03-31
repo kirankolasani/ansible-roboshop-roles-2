@@ -1,0 +1,23 @@
+- name: Configure YUM Repos from the script provided by vendor.
+  shell: "{{item}}"
+  loop:
+  - "curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash"
+  - "curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash"
+  
+- name: Install RabbitMQ
+  yum:
+    name: "{{RMQ_USER}}"
+    state: installed
+
+- name: Start RabbitMQ Service
+  service:
+    name: "{{RMQ_USER}}"
+    state: started
+    enabled: yes
+
+- name: Need to create one user for the application.
+  command: "{{item}}"
+  loop:
+  - rabbitmqctl add_user roboshop roboshop123
+  - rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+
