@@ -2,14 +2,15 @@
   hosts: localhost
   tasks:
   - name: Installing nginx
-    - tag: install
+    tags: 
+    - install
     package:
       name: nginx
       state: installed
   
   - name: starting nginx
-    - tag: start
+    tags: 
+    - start
     service:
       name: nginx
       state: started
-      
