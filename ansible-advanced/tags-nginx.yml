@@ -1,5 +1,5 @@
 - name: Tags example
-  hosts: localhost
+  hosts: web
   tasks:
   - name: Installing nginx
     tags: 

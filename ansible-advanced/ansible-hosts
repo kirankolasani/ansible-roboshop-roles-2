@@ -1,7 +1,7 @@
 localhost
 
 [web]
-web.devopsaws.site
+172.31.90.149
 
 [mongodb]
 mongodb.devopsaws.site
