@@ -6,7 +6,7 @@
     - install
     package:
       name: nginx
-      state: installed
+      state: present
   
   - name: starting nginx
     tags: 
