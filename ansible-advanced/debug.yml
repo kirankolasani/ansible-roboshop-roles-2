@@ -1,6 +1,7 @@
 - name: Disply the message
-  hosts: web
+  hosts: localhost
   become: yes
   tasks:
   - name: print the message
-    debug: " {{ansible_facts}} "
+    debug: 
+      msg: " {{ansible_facts}} "

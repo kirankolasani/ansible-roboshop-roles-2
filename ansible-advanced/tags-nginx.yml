@@ -1,0 +1,15 @@
+- name: Tags example
+  hosts: localhost
+  tasks:
+  - name: Installing nginx
+    - tag: install
+    package:
+      name: nginx
+      state: installed
+  
+  - name: starting nginx
+    - tag: start
+    service:
+      name: nginx
+      state: started
+      
